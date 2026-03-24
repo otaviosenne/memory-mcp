@@ -33,7 +33,8 @@ export function startWebServer(vault: Vault, port: number): void {
 
   app.get('/api/search', async (req, res) => {
     const q = String(req.query['q'] ?? '');
-    const results = await vault.search(q);
+    const limit = parseInt(String(req.query['limit'] ?? '10'));
+    const results = await vault.search(q, { limit });
     res.json(results);
   });
 

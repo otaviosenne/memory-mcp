@@ -271,9 +271,12 @@ export class Vault {
 
   private buildFuseIndex(list: Memory[]): Fuse<Memory> {
     return new Fuse(list, {
-      keys: ['name', 'content', 'tags'],
+      keys: ['name', 'tags', 'content'],
       includeScore: true,
       threshold: 0.4,
+      useExtendedSearch: true,
+      ignoreLocation: true,
+      minMatchCharLength: 2,
     });
   }
 
